@@ -17,6 +17,15 @@ class Critter(object):
         self.name = name         # имя зверюшки
         self.hunger = hunger     # уровень голода
         self.boredom = boredom   # уровень уныния
+        
+    """Отражает точные значения атрибутов объекта"""    
+    # Вызов производится по нажатию 9
+    def __str__(self):
+        rep = "Объект класса Critter\n"
+        rep += "Имя: " + self.name + "\n"
+        rep += "Уровень голода: " + str(self.hunger) + "\n"
+        rep += "Уровень уныния: " + str(self.boredom) + "\n"
+        return rep
 
     """ Увеличивает уровень голода и уныния """
     def __pass_time(self):
@@ -50,14 +59,14 @@ class Critter(object):
             self.hunger = 0
         self.__pass_time()
         
-    """ Играем"""
+    """ Играем """
     def play(self, fun = 4):
         print("Yиии!")
         self.boredom -= fun
         if self.boredom < 0:
             self.boredom = 0
         self.__pass_time()
-
+        
 
 def main():
     crit_name = input("Kaк вы назовете свою зверюшку?: ")
@@ -99,6 +108,10 @@ def main():
             # Запрос количества времени игры и вызов метода уменьшения уровня уныния
             amount_of_boredom = int(input("Как долго поиграем со зверюшкой - " + crit.name + "?:"))           
             crit.play(amount_of_boredom)
+            
+        # вывод точных значений атрибутов объекта
+        elif choice == "9":
+            print(crit)
 
         # непонятный пользовательский ввод
         else:
